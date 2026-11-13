@@ -1,0 +1,164 @@
+{
+  "info": {
+    "_postman_id": "b0f1e190-265a-4b84-be61-f9f36770b7eb",
+    "name": "tributi-collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19690330"
+  },
+  "item": [
+    {
+      "name": "verifica-posizione-operatore",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJWUkRMR0k3NUIwMkYyMDVZIn0.vHX7E0St1iTiL6eThWGAfcH6Hvy9u9Or45RvUV2HvE4",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/posizioni?codiceFiscale=RSSMRA80A01H501X",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "posizioni"
+          ],
+          "query": [
+            {
+              "key": "codiceFiscale",
+              "value": "RSSMRA80A01H501X"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "verifica-posizione-cittadino",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSU1NNUkE4MEEwMUg1MDFYIn0.Dit1AkfcuUdJ21MvvLoWEHv8M4GXV-Pmnj1IOWYQ6Lg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/posizioni",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "posizioni"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "registra-debito",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJWUkRMR0k3NUIwMkYyMDVZIn0.vHX7E0St1iTiL6eThWGAfcH6Hvy9u9Or45RvUV2HvE4",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"codiceFiscale\": \"RSSMRA80A01H501X\",\r\n  \"tipoTributo\": \"TARI\",\r\n  \"importo\": 250.00,\r\n  \"dataScadenza\": \"2027-06-30\",\r\n  \"codiceEnte\": \"COMUNE_ROMA\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/posizioni",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "posizioni"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "esegui-pagamento",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSU1NNUkE4MEEwMUg1MDFYIn0.Dit1AkfcuUdJ21MvvLoWEHv8M4GXV-Pmnj1IOWYQ6Lg",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"iuv\": \"17945636466991083\",\r\n  \"importoVersato\": 250.00\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/pagamenti",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "pagamenti"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_1e2w",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_0i3p",
+      "secret": true
+    }
+  ]
+}

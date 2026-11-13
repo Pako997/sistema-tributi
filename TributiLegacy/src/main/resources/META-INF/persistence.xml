@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             version="2.1">
+
+    <persistence-unit name="tributiPU" transaction-type="JTA">
+        <jta-data-source>java:/jdbc/TributiDS</jta-data-source>
+
+        <class>it.pa.tributi.entity.Posizione</class>
+        <class>it.pa.tributi.entity.Ente</class>
+        <class>it.pa.tributi.entity.Operatore</class>
+        <class>it.pa.tributi.entity.Notifica</class>
+        <class>it.pa.tributi.entity.ArchivioPagamento</class>
+
+        <properties>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

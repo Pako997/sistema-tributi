@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: TributiService
+
+  datasource:
+    url: jdbc:mysql://localhost:3307/tributi
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+
+jwt:
+  secret: chiave-di-sviluppo-lunga-almeno-32-caratteri-per-hs256
+
+tributi:
+  giorni-minimi-scadenza: 30

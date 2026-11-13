@@ -1,0 +1,54 @@
+services:
+  mysql:
+    image: mysql:8
+    container_name: tributi-nuovo-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tributi
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  tributi-service:
+    build: ../
+    container_name: tributi-service
+    ports:
+      - "8081:8080"
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/tributi
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET: a-string-secret-at-least-256-bits-long
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  notifica-service:
+    build: ../../NotificaService
+    container_name: notifica-service
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/tributi
+      DB_USER: root
+      DB_PASSWORD: root
+    depends_on:
+      mysql:
+        condition: service_healthy
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:

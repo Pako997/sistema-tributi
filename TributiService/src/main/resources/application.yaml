@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: TributiService
+
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3307/tributi}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+jwt:
+  secret: ${JWT_SECRET}
+tributi:
+  giorni-minimi-scadenza: 30
+config:
+  stopBubbling: true
+lombok:
+  addLombokGeneratedAnnotation: true
+
+#CITTADINO = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJSU1NNUkE4MEEwMUg1MDFYIn0.Dit1AkfcuUdJ21MvvLoWEHv8M4GXV-Pmnj1IOWYQ6Lg
+#OPERATORE = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJWUkRMR0k3NUIwMkYyMDVZIn0.vHX7E0St1iTiL6eThWGAfcH6Hvy9u9Or45RvUV2HvE4

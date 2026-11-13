@@ -1,0 +1,47 @@
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: tributi-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: tributi
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  wildfly:
+    build: .
+    container_name: tributi-app
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+      - "8787:8787"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+#  spid-idp-test:
+#    image: italia/spid-saml-check
+#    container_name: tributi-spid-idp
+#    ports:
+#      - "8443:8443"
+  sonarqube:
+    image: sonarqube:community
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    environment:
+      SONAR_ES_BOOTSTRAP_CHECKS_DISABLE: "true"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
